@@ -1,6 +1,7 @@
 # powerline-keebs
 
 [![PyPI](https://img.shields.io/pypi/v/powerline-keebs)](https://pypi.org/project/powerline-keebs/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/powerline-keebs)
 
 A custom [Powerline](https://github.com/powerline/powerline) segment for displaying currently connected keyboards.
 
@@ -81,3 +82,7 @@ toggle_powerline_keebs() {
   esac
 }
 ```
+
+## Stats
+
+![Alt](https://repobeats.axiom.co/api/embed/49028c098050f2ec944637634225038be092c693.svg "Repobeats analytics image")
