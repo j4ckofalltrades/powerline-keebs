@@ -40,20 +40,26 @@ see [Powerline Colorschemes](https://powerline.readthedocs.io/en/master/configur
 Add the following config item to your Powerline segments config file,
 see [Powerline Segment reference](https://powerline.readthedocs.io/en/master/configuration/segments.html#segment-reference) for more info.
 
-Note: Dongles (or wireless receivers) are included by default -- to exclude them add the "args" config from the example below.
-
 ```json
 {
   "function": "powerline_keebs.keebs",
   "priority": 30,
   "args": {
-    "no_dongles": true
+    "no_dongles": true,
+    "exclude_list": "comma,separated,keyboard,list"
   }
 }
 ```
 
 - If adding the segment to the shell, edit `~/.config/powerline/themes/shell/default.json`.
 - If adding the segment to the tmux status line, edit `~/.config/powerline/themes/tmux/default.json`.
+
+#### Configuration items
+
+| config_item  | description                                     | value                                 |
+|--------------|-------------------------------------------------|---------------------------------------|
+| no_dongles   | exclude keyboard dongles and/or receivers       | `true` or `false` (defaults to false) |
+| exclude_list | exclude pre-defined keyboard(s) from the result | comma-separated string                |
 
 ### Toggle visibility
 

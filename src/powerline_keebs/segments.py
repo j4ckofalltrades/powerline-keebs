@@ -39,7 +39,7 @@ class KeebsSegment(Segment):
     """Constructs the segment's sections with the configured colorscheme and visibility options applied."""
 
     @staticmethod
-    def detect_kbs(pl):
+    def detect_kbs(pl) -> list:
         if "linux" in platform:
             device_pattern = \
                 b"Bus\\s+(?P<bus>\\d+)\\s+Device\\s+(?P<device>\\d+).+ID\\s(?P<id>\\w+:\\w+)\\s(?P<tag>.+)$"
@@ -91,7 +91,16 @@ class KeebsSegment(Segment):
         filtered = filter(lambda k: "receiver" not in str(k).lower() and "dongle" not in str(k).lower(), kbs)
         return list(filtered)
 
-    def __call__(self, pl, no_dongles=False, **kwargs):
+    @staticmethod
+    def filter_exclude_list(kbs: list, exclude_kbs: list):
+        print(kbs)
+        print(exclude_kbs)
+        if len(exclude_kbs) == 0:
+            return kbs
+
+        return [kb for kb in kbs if kb not in exclude_kbs]
+
+    def __call__(self, pl, no_dongles=False, exclude_list="", **kwargs):
         pl.debug('Running powerline-keebs...')
 
         sections = []
@@ -102,9 +111,19 @@ class KeebsSegment(Segment):
             return sections
 
         self.no_dongles = no_dongles
-        detected_keebs = self.filter_dongles(self.detect_kbs(pl)) if self.no_dongles else self.detect_kbs(pl)
-        if detected_keebs is None:
-            return sections
+        self.exclude_list = exclude_list
+
+        detected_keebs = self.detect_kbs(pl)
+        filtered = []
+        if self.no_dongles:
+            filtered = self.filter_dongles(detected_keebs)
+
+        if self.exclude_list:
+            filtered = self.filter_exclude_list(filtered.copy(), str(self.exclude_list).split(","))
+
+        if len(filtered) == 0:
+            pl.debug('No keyboards detected')
+            return []
 
         sections.append({
             'contents': f'{SegmentContent.KEEBS_ICON.value}  ',
@@ -112,7 +131,7 @@ class KeebsSegment(Segment):
             'divider_highlight_group': SegmentColorscheme.DIVIDER_HIGHLIGHT_GROUP.value,
         })
 
-        kbs = f' {SegmentContent.KEEBS_ICON.value}  '.join(detected_keebs)
+        kbs = f' {SegmentContent.KEEBS_ICON.value}  '.join(filtered)
         sections.append({
             'contents': kbs,
             'highlight_groups': [SegmentColorscheme.DEFAULT_HIGHLIGHT_GROUP.value],
@@ -124,7 +143,7 @@ class KeebsSegment(Segment):
 
 keebs = with_docstring(KeebsSegment(), """Return a list of currently connected keyboards.
 
-Supports devices connected through a USB hub. Dongles or wireless receivers can be filtered out optionally.
+Dongles or wireless receivers can be filtered out optionally.
 
 Divider highlight group used: ``keebs:divider``.
 
