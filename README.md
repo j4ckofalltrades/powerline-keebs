@@ -5,7 +5,7 @@
 
 A custom [Powerline](https://github.com/powerline/powerline) segment for displaying currently connected keyboards.
 
-Keyboard detection and parsing based off of [pykeeb](https://github.com/j4ckofalltrades/pykeeb).
+Keyboard detection and parsing based off of [kbdetector](https://github.com/j4ckofalltrades/kbdetector).
 
 ![](https://res.cloudinary.com/j4ckofalltrades/image/upload/v1645293862/foss/powerline_keebs_hwsshp.png)
 
