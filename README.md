@@ -15,12 +15,6 @@ Keyboard detection and parsing based off of [kbdetector](https://github.com/j4ck
 
 `$ pip install powerline-keebs`
 
-### Local development
-
-`$ pip install --editable .`
-
-Installing the package in editable mode saves you from having to "re-install" to see the latest changes.
-
 ## Configuration
 
 ### Colorscheme

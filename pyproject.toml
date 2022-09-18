@@ -1,6 +1,14 @@
+[tool.poetry]
+name = "powerline-keebs"
+version = "0.2.0"
+description = "A custom Powerline segment for displaying currently connected keyboards"
+authors = ["Jordan Duabe <me@jduabe.dev>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
 [build-system]
-requires = [
-    "setuptools>=42",
-    "wheel"
-]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
