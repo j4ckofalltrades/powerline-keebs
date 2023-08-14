@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "powerline-keebs"
-version = "0.2.2"
+version = "0.2.3"
 description = "A custom Powerline segment for displaying currently connected keyboards"
 authors = ["Jordan Duabe <me@jduabe.dev>"]
 license = "MIT"
