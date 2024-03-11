@@ -13,7 +13,7 @@ keywords = ["powerline", "keyboards"]
 "Bug Tracker" = "https://github.com/j4ckofalltrades/powerline-keebs/issues"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.9"
 
 [build-system]
 requires = ["poetry-core"]
